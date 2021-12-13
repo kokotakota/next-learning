@@ -26,3 +26,16 @@ yarn dev
 ```
 yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material
 ```
+
+## directory setting
+```
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/components/*": ["components/*"]
+    },
+    ...
+  }
+}
+```
