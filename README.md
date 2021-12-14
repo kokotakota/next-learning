@@ -39,3 +39,5 @@ yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material
   }
 }
 ```
+
+## .env file
