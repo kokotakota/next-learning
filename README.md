@@ -1,4 +1,4 @@
-## create project
+## プロジェクト作成
 ```
 yarn create next-app
 ```
@@ -22,12 +22,12 @@ yarn dev
 
 4. Rewrite all files in pages directory to .tsx
 
-## Material UI
+## MaterialUI導入
 ```
 yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material
 ```
 
-## directory setting
+## ソースディレクトリ設定
 ```
 {
   "compilerOptions": {
@@ -40,4 +40,14 @@ yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material
 }
 ```
 
-## .env file
+## .envファイル作成
+
+## 状態管理 Redux Persist
+```
+yarn add redux react-redux redux-persist @reduxjs/toolkit
+```
+
+## バリデーション
+```
+yarn add react-hook-form
+```
