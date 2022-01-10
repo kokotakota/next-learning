@@ -10,6 +10,17 @@ cd <project root>
 touch tsconfig.json
 ```
 
+※型チェックを厳しくしたい場合strictをtrueにする
+```
+{
+  "compilerOptions": {
+    ...
+    "strict": true
+    ...
+  }
+}
+```
+
 2. install TypeScript
 ```
 yarn add --dev typescript @types/react @types/node

@@ -1,4 +1,4 @@
-import { useState, } from 'react'
+import { useState, ReactNode } from 'react'
 import NextLink from 'next/link'
 
 import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, Box } from '@mui/material'
@@ -14,7 +14,7 @@ const appBarHeight = 50
 const drawerWidth = 240
 const toolbarVariant = "dense"
 
-export default function Component ({ children }) {
+export default function DefaultLayout  ({ children }: { children: ReactNode }) {
   const [drawer, setDrawer] = useState<boolean>(false)
   const theme = useTheme()
 
@@ -22,7 +22,8 @@ export default function Component ({ children }) {
   const user = useSelector((state: RootState) => state.user)
 
   const onSignIn = () => {
-    dispatch(userSlice.actions.setUser(user))
+    
+    /* dispatch(userSlice.actions.setUser(user)) */
   }
 
   const onSignOut = () => {
@@ -59,8 +60,8 @@ export default function Component ({ children }) {
           </NextLink>
           <div style={{ flexGrow: 1 }} />
           { user.id
-            ? <Button color="inherit" onClick={onSignIn}>サインイン</Button>
-            : <Button color="inherit" onClick={onSignOut}>サインアウト</Button>
+            ? <Button color="inherit" onClick={onSignIn}>ログイン</Button>
+            : <Button color="inherit" onClick={onSignOut}>ログアウト</Button>
           }
           
         </Toolbar>
@@ -85,6 +86,8 @@ export default function Component ({ children }) {
       <main>
         <Box sx={
           drawer ? {
+            pt: 2,
+            px: 4,
             ml: `${drawerWidth}px`,
             transition: theme.transitions.create('margin', {
               easing: theme.transitions.easing.easeOut,
@@ -92,6 +95,8 @@ export default function Component ({ children }) {
             })
           }
           : {
+            pt: 2,
+            px: 4,
             ml: 0,
             transition: theme.transitions.create('margin', {
               easing: theme.transitions.easing.sharp,

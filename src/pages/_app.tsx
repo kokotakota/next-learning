@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { AppProps, AppContext } from "next/app"
 
 import DefaultLayout from 'components/DefaultLayout'
 import CssBaseLine from '@mui/material/CssBaseline'
@@ -10,7 +11,14 @@ import { store, persistor } from 'store'
 import { useDispatch } from 'react-redux'
 import { userSlice } from 'store/user'
 
-function AppWrapper (context) {
+type AppPropsWithInitialProps = AppProps & {
+  user: {
+    id?: string,
+    name?: string
+  }
+}
+
+function AppWrapper (context: AppPropsWithInitialProps) {
   return (
     <Provider store={store}>
       <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
@@ -20,7 +28,7 @@ function AppWrapper (context) {
   )
 }
 
-function App ({ Component, pageProps, user }) {
+function App ({ Component, pageProps, user }: AppPropsWithInitialProps) {
   // storeの更新
   const dispatch = useDispatch()
   dispatch(userSlice.actions.setUser(user))
@@ -40,7 +48,7 @@ function App ({ Component, pageProps, user }) {
   )
 }
 
-AppWrapper.getInitialProps = async ({ ctx }) => {
+AppWrapper.getInitialProps = async ({ ctx }: AppContext) => {
   const { req, res, pathname } = ctx
   return { user: { id: 'test', name: 'テスト' } }
 }
