@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export type User = {
   id: string
   name?: string
-} | null
+}
 
 export type UpdateUserPayload = User
 export type UpdateNamePayload = string

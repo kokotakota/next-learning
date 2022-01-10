@@ -58,7 +58,7 @@ export default function Component ({ children }) {
             </Typography>
           </NextLink>
           <div style={{ flexGrow: 1 }} />
-          { user
+          { user.id
             ? <Button color="inherit" onClick={onSignIn}>サインイン</Button>
             : <Button color="inherit" onClick={onSignOut}>サインアウト</Button>
           }
