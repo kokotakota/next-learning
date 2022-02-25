@@ -23,8 +23,8 @@ export default function Page () {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ pt: 2, px: 4 }}>
-        <Grid container justifyContent="center" alignItems="center" item>
+      <Grid container spacing={2}>
+        <Grid container justifyContent="center" item alignItems="center">
           counst: {count}
           <Button
             variant="contained"
