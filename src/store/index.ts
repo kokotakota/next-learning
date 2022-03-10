@@ -1,5 +1,14 @@
-import { createStore, combineReducers } from "redux"
-import { persistStore, persistReducer } from 'redux-persist'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { userSlice } from 'store/user'
 
@@ -10,11 +19,19 @@ const rootReducer = combineReducers({
 export type RootState = ReturnType<typeof rootReducer>
 
 const persistConfig = {
-  key: 'test',
+  key: 'next-learning',
   storage
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const store = createStore(persistedReducer)
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
+})
 export const persistor = persistStore(store)

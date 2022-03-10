@@ -30,8 +30,8 @@ function AppWrapper (context: AppPropsWithInitialProps) {
 
 function App ({ Component, pageProps, user }: AppPropsWithInitialProps) {
   // storeの更新
-  const dispatch = useDispatch()
-  dispatch(userSlice.actions.setUser(user))
+  // const dispatch = useDispatch()
+  // dispatch(userSlice.actions.setUser(user))
 
   return (
     <>
