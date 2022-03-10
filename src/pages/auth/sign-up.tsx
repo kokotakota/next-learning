@@ -22,16 +22,15 @@ export default function SignIn () {
     try {
       // サインアップ処理
       setConfirm(true)
-      setLoading(false)
     } catch (e: any) {
       // 登録済みの場合
       if (e.code === 'UsernameExistsException') {
         setError('email', { type: "manual", message: 'すでに登録されているメールアドレスです' })
-        setLoading(false)
       } else {
-        setLoading(false)
         throw e
       }
+    } finally {
+      setLoading(false)
     }
   }
 

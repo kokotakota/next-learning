@@ -18,27 +18,26 @@ interface Props {
 
 export default function ConfirmEmail ({ email, password }: Props) {
   const [ loading, setLoading ] = useState<boolean>(false)
+  const { register, handleSubmit, formState: { errors }, setError } = useForm<Inputs>()
   const dispatch = useDispatch()
-  const { register, handleSubmit, formState: { errors }, clearErrors, setError } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true)
-    clearErrors('code')
 
     try {
       // メールアドレス認証処理
       const user = { id: '0123', name: 'テスト' }
       dispatch(userSlice.actions.setUser(user))
-      setLoading(false)
       Router.push('/')
     } catch (e: any) {
+      // コードが間違っている場合
       if (e.code === 'CodeMismatchException') {
         setError('code', { type: "manual", message: '認証コードが正しくありません' })
-        setLoading(false)
       } else {
-        setLoading(false)
         throw e
       }
+    } finally {
+      setLoading(false)
     }
   }
 

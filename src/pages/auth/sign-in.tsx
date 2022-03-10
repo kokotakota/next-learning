@@ -27,7 +27,6 @@ export default function SignIn () {
       // ログイン処理
       const user = { id: '0123', name: 'テスト' }
       dispatch(userSlice.actions.setUser(user))
-      setLoading(false)
       Router.push('/')
     } catch (e: any) {
       switch (e.code) {
@@ -40,8 +39,10 @@ export default function SignIn () {
           alert('IDまたはパスワードが間違っています')
           break
         default:
-          setLoading(false)
+          throw e
       }
+    } finally {
+      setLoading(false)
     }
   }
 
